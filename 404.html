@@ -1,0 +1,391 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>404 — Page Not Found | Black Hawk Down The Game</title>
+
+    <meta name="description" content="The page you're looking for could not be found. Return to Black Hawk Down The Game and continue exploring.">
+    <meta name="robots" content="noindex, follow">
+    <meta name="theme-color" content="#080a0b">
+
+    <link rel="canonical" href="https://www.blackhawkdownthegame.com/">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html,
+        body {
+            min-height: 100%;
+        }
+
+        body {
+            min-height: 100vh;
+            font-family: Arial, Helvetica, sans-serif;
+            background:
+                radial-gradient(
+                    circle at 50% 40%,
+                    rgba(82, 89, 83, 0.18),
+                    transparent 35%
+                ),
+                linear-gradient(
+                    135deg,
+                    #050606 0%,
+                    #0b0d0d 48%,
+                    #030404 100%
+                );
+            color: #ffffff;
+            overflow: hidden;
+        }
+
+        body::before {
+            content: "";
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            opacity: 0.08;
+            background-image:
+                linear-gradient(
+                    rgba(255,255,255,.04) 1px,
+                    transparent 1px
+                ),
+                linear-gradient(
+                    90deg,
+                    rgba(255,255,255,.04) 1px,
+                    transparent 1px
+                );
+            background-size: 45px 45px;
+        }
+
+        .page {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 30px 20px;
+            position: relative;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 850px;
+            text-align: center;
+            position: relative;
+            z-index: 2;
+        }
+
+        .status {
+            display: inline-flex;
+            align-items: center;
+            gap: 9px;
+            padding: 9px 18px;
+            border: 1px solid rgba(191, 198, 190, 0.25);
+            background: rgba(255,255,255,0.035);
+            border-radius: 50px;
+            color: #aeb5ae;
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            margin-bottom: 28px;
+            backdrop-filter: blur(8px);
+        }
+
+        .status::before {
+            content: "";
+            width: 7px;
+            height: 7px;
+            border-radius: 50%;
+            background: #9da99d;
+            box-shadow: 0 0 12px rgba(180,190,180,.75);
+        }
+
+        .error-code {
+            font-size: clamp(100px, 22vw, 220px);
+            line-height: .78;
+            font-weight: 900;
+            letter-spacing: -10px;
+            color: #e7e9e5;
+            text-shadow:
+                0 5px 0 #151817,
+                0 20px 50px rgba(0,0,0,.8);
+            margin-bottom: 28px;
+        }
+
+        h1 {
+            font-size: clamp(27px, 5vw, 46px);
+            line-height: 1.1;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: #f1f2ee;
+            margin-bottom: 18px;
+        }
+
+        .description {
+            max-width: 570px;
+            margin: 0 auto 32px;
+            color: #989f99;
+            font-size: 15px;
+            line-height: 1.8;
+        }
+
+        .home-button {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            min-width: 190px;
+            padding: 14px 25px;
+            border: 1px solid rgba(197, 204, 196, .3);
+            border-radius: 7px;
+            background: linear-gradient(
+                145deg,
+                #aeb6ad,
+                #747c74
+            );
+            color: #090b0a;
+            text-decoration: none;
+            font-size: 12px;
+            font-weight: 800;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            box-shadow:
+                0 10px 30px rgba(0,0,0,.35),
+                inset 0 1px rgba(255,255,255,.4);
+            transition:
+                transform .25s ease,
+                filter .25s ease;
+        }
+
+        .home-button:hover {
+            transform: translateY(-3px);
+            filter: brightness(1.12);
+        }
+
+        .home-button span {
+            margin-right: 10px;
+            font-size: 17px;
+        }
+
+        .divider {
+            width: 75px;
+            height: 2px;
+            margin: 34px auto 22px;
+            background: linear-gradient(
+                90deg,
+                transparent,
+                #9ea79e,
+                transparent
+            );
+        }
+
+        .footer {
+            color: #515852;
+            font-size: 10px;
+            letter-spacing: 1.5px;
+        }
+
+        /* Decorative corners */
+
+        .corner {
+            position: absolute;
+            width: 70px;
+            height: 70px;
+            border-color: rgba(150,160,150,.18);
+            pointer-events: none;
+        }
+
+        .top-left {
+            top: 35px;
+            left: 35px;
+            border-top: 1px solid;
+            border-left: 1px solid;
+        }
+
+        .top-right {
+            top: 35px;
+            right: 35px;
+            border-top: 1px solid;
+            border-right: 1px solid;
+        }
+
+        .bottom-left {
+            bottom: 35px;
+            left: 35px;
+            border-bottom: 1px solid;
+            border-left: 1px solid;
+        }
+
+        .bottom-right {
+            bottom: 35px;
+            right: 35px;
+            border-bottom: 1px solid;
+            border-right: 1px solid;
+        }
+
+        /* Radar-style background */
+
+        .radar {
+            position: fixed;
+            width: 520px;
+            height: 520px;
+            border-radius: 50%;
+            border: 1px solid rgba(150,160,150,.04);
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            pointer-events: none;
+        }
+
+        .radar::before,
+        .radar::after {
+            content: "";
+            position: absolute;
+            border-radius: 50%;
+            border: 1px solid rgba(150,160,150,.025);
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        .radar::before {
+            width: 720px;
+            height: 720px;
+        }
+
+        .radar::after {
+            width: 920px;
+            height: 920px;
+        }
+
+        @media (max-width: 650px) {
+
+            body {
+                overflow: hidden;
+            }
+
+            .page {
+                padding: 25px 18px;
+            }
+
+            .error-code {
+                font-size: 120px;
+                letter-spacing: -6px;
+                margin-bottom: 25px;
+            }
+
+            h1 {
+                font-size: 27px;
+            }
+
+            .description {
+                font-size: 13px;
+                line-height: 1.7;
+                margin-bottom: 27px;
+            }
+
+            .home-button {
+                min-width: 175px;
+                padding: 13px 20px;
+            }
+
+            .corner {
+                width: 40px;
+                height: 40px;
+            }
+
+            .top-left,
+            .top-right {
+                top: 18px;
+            }
+
+            .bottom-left,
+            .bottom-right {
+                bottom: 18px;
+            }
+
+            .top-left,
+            .bottom-left {
+                left: 18px;
+            }
+
+            .top-right,
+            .bottom-right {
+                right: 18px;
+            }
+
+            .radar {
+                width: 300px;
+                height: 300px;
+            }
+
+            .radar::before {
+                width: 450px;
+                height: 450px;
+            }
+
+            .radar::after {
+                width: 600px;
+                height: 600px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="page">
+
+        <div class="radar"></div>
+
+        <div class="corner top-left"></div>
+        <div class="corner top-right"></div>
+        <div class="corner bottom-left"></div>
+        <div class="corner bottom-right"></div>
+
+        <main class="container">
+
+            <div class="status">
+                Signal Lost
+            </div>
+
+            <div class="error-code">
+                404
+            </div>
+
+            <h1>
+                Mission Page Not Found
+            </h1>
+
+            <p class="description">
+                The page you're looking for may have been moved,
+                removed, or is currently unavailable. Return to the
+                main operation and continue your mission.
+            </p>
+
+            <a
+                class="home-button"
+                href="https://www.blackhawkdownthegame.com/"
+            >
+                <span>←</span>
+                Return to Base
+            </a>
+
+            <div class="divider"></div>
+
+            <div class="footer">
+                BLACK HAWK DOWN THE GAME · WWW.BLACKHAWKDOWNTHEGAME.COM
+            </div>
+
+        </main>
+
+    </div>
+
+</body>
+</html>
+```
